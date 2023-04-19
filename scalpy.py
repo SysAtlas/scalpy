@@ -4,6 +4,23 @@
 import sys
 import json
 
+# Class Task for quick modification of data.
+class Parser:
+    def __init__(self, day, subject, name, notes):
+        self.day = day 
+        self.subject = subject 
+        self.time = name 
+        self.notes = notes 
+    def parseDay(self):
+        file = open("./data.json")
+        data = json.load(file)
+        print(self.day)
+        print(data)
+        file.close()
+        return
+    def addData(self):
+         # TODO
+         return
 # Checks whether the provided command line arguments are valid. 
 def validateInput():
     if len(sys.argv) < 2:
@@ -15,19 +32,15 @@ def validateInput():
     cmd = sys.argv[1].lower()
 # This part chooses the action depending on the given parameters.
     if cmd == "mo" or cmd == "tu" or cmd == "we" or cmd == "th" or cmd == "fr":
-        parseDay()
-        return
+       outputCommand(cmd) 
     elif cmd == "today":
         return
     else:
         print("Please run a valid option.")
-
-def parseDay():
-#    file = open("./data.json")
-#    data = json.load(file)
-#    print(data)
-#    file.close()
-    file = open("./data.json")
-    print(file.read())
+# Case where we want to print data.
+def outputCommand(command):
+    parser = Parser(command, "", 0, "")
+    parser.parseDay()
+    return
 # Starting point of the program.
-validateInput()
+validateInput() 
