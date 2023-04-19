@@ -11,16 +11,18 @@ class Parser:
         self.subject = subject 
         self.time = name 
         self.notes = notes 
+    def __init__(self, day):
+         self.day = day
     def parseDay(self):
         file = open("./data.json")
         data = json.load(file)
-        print(self.day)
         print(data)
         file.close()
         return
     def addData(self):
          # TODO
          return
+
 # Checks whether the provided command line arguments are valid. 
 def validateInput():
     if len(sys.argv) < 2:
@@ -37,10 +39,12 @@ def validateInput():
         return
     else:
         print("Please run a valid option.")
+
 # Case where we want to print data.
 def outputCommand(command):
-    parser = Parser(command, "", 0, "")
+    parser = Parser(command)
     parser.parseDay()
     return
+
 # Starting point of the program.
 validateInput() 
