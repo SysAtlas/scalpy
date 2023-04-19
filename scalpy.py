@@ -1,4 +1,4 @@
-# The xx Calendar - a command line calendar management system.
+# The Scalpy Calendar - a command line calendar management system.
 # By Robert Barinov, TUM
 
 import sys
@@ -6,6 +6,7 @@ import json
 
 # Class Task for quick modification of data.
 class Parser:
+    # Two constructors for input and output type commands.
     def __init__(self, day, subject, name, notes):
         self.day = day 
         self.subject = subject 
@@ -13,11 +14,18 @@ class Parser:
         self.notes = notes 
     def __init__(self, day):
          self.day = day
+
     def parseDay(self):
         file = open("./data.json")
-        data = json.load(file)
-        print(data)
+        filedata = json.load(file)
         file.close()
+        data = filedata[self.day]
+        for item in data:
+            item = dict(item)
+            things = ""
+            for value in item.values():
+                 things = things + " " + str(value)
+            print(things)
         return
     def addData(self):
          # TODO
